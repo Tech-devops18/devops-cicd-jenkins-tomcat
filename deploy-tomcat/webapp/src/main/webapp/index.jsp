@@ -47,7 +47,6 @@
 https://virtualtechbox.devops/register
   <div class="container">
     <h1>Register for DevOps Learning</h1>
-    <p>Join the Virtual TechBox YouTube Channel community by filling out this form.</p>
     <hr>
 
     <label for="Name"><b>Full Name</b></label>
