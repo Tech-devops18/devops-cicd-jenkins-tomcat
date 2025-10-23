@@ -44,7 +44,6 @@
 </head>
 <body>
 
-https://virtualtechbox.devops/register
   <div class="container">
     <h1>Register for DevOps Learning</h1>
     <hr>
