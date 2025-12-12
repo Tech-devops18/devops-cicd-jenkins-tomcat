@@ -38,7 +38,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['tomcat1']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "sudo ${TOMCAT_BIN}/shutdown.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} sudo ${TOMCAT_BIN}/shutdown.sh || true
                         scp -o StrictHostKeyChecking=no deploy-tomcat/webapp/target/*.war ubuntu@${SERVER1}:${DEPLOY_DIR}/
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "sudo ${TOMCAT_BIN}/startup.sh"
                     """
@@ -50,7 +50,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['tomcat2']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/shutdown.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} sudo ${TOMCAT_BIN}/shutdown.sh || true
                         scp -o StrictHostKeyChecking=no deploy-tomcat/webapp/target/*.war ubuntu@${SERVER2}:${DEPLOY_DIR}/
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/startup.sh"
                     """
