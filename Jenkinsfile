@@ -51,7 +51,7 @@ pipeline {
                 sshagent(credentials: ['tomcat2']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/shutdown.sh"
-                        scp -o StrictHostKeyChecking=no deploy/webapp/target/*.war ubuntu@${SERVER2}:${DEPLOY_DIR}/
+                        scp -o StrictHostKeyChecking=no deploy-tomcat/webapp/target/*.war ubuntu@${SERVER2}:${DEPLOY_DIR}/
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/startup.sh"
                     """
                 }
