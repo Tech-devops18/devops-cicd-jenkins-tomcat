@@ -15,13 +15,13 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/Tech-devops18/devops-cicd-jenkins-tomcat.git'
             }
         }
 
-        stage('Build WAR') {
+        stage('Build with mvn, WAR FILE') {
             steps {
                 dir('deploy-tomcat') {
                     sh 'mvn clean package'
