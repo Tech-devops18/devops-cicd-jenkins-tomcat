@@ -36,7 +36,7 @@ pipeline {
 
         stage('Deploy to Server 1') {
             steps {
-                sshagent(credentials: ['tomcat-user']) {
+                sshagent(credentials: ['tomcat1']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "sudo ${TOMCAT_BIN}/shutdown.sh"
                         scp -o StrictHostKeyChecking=no deploy-tomcat/target/*.war ubuntu@${SERVER1}:${DEPLOY_DIR}/
@@ -48,7 +48,7 @@ pipeline {
 
         stage('Deploy to Server 2') {
             steps {
-                sshagent(credentials: ['tomcat-user']) {
+                sshagent(credentials: ['tomcat2']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/shutdown.sh"
                         scp -o StrictHostKeyChecking=no deploy/target/*.war ubuntu@${SERVER2}:${DEPLOY_DIR}/
