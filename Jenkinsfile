@@ -9,9 +9,8 @@ pipeline {
     environment {
         DEPLOY_DIR = "/opt/tomcat/webapps"
         TOMCAT_BIN = "/opt/tomcat/bin"
-	TOMCAT_BIN = "/opt/tomcat/bin"
-	SERVER1 = "10.0.2.96"
-	SERVER2 = "10.0.2.57"
+		SERVER1 = "10.0.2.96"
+		SERVER2 = "10.0.2.57"
     }
 
     stages {
