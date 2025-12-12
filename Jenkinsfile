@@ -36,11 +36,11 @@ pipeline {
 
         stage('Deploy to Server 1') {
             steps {
-                sshagent(credentials: ['tomcat-server1']) {
+                sshagent(credentials: ['tomcat-user']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "${TOMCAT_BIN}/shutdown.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "sudo ${TOMCAT_BIN}/shutdown.sh"
                         scp -o StrictHostKeyChecking=no deploy-tomcat/target/*.war ubuntu@${SERVER1}:${DEPLOY_DIR}/
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "${TOMCAT_BIN}/startup.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER1} "sudo ${TOMCAT_BIN}/startup.sh"
                     """
                 }
             }
@@ -48,11 +48,11 @@ pipeline {
 
         stage('Deploy to Server 2') {
             steps {
-                sshagent(credentials: ['tomcat-server2']) {
+                sshagent(credentials: ['tomcat-user']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "${TOMCAT_BIN}/shutdown.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/shutdown.sh"
                         scp -o StrictHostKeyChecking=no deploy/target/*.war ubuntu@${SERVER2}:${DEPLOY_DIR}/
-                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "${TOMCAT_BIN}/startup.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SERVER2} "sudo ${TOMCAT_BIN}/startup.sh"
                     """
                 }
             }
